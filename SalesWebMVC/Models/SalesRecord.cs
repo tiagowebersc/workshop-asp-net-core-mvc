@@ -1,12 +1,23 @@
 ﻿using SalesWebMVC.Models.Enums;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace SalesWebMVC.Models
 {
     public class SalesRecord
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Birth Date")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
+
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Base Salary")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
+        [Range(100.0, 50000.0, ErrorMessage = "{0} must be from {1} to {2}]")]
         public double Amount { get; set; }
         public SaleStatus Status { get; set; }
         public Seller Seller { get; set; }
